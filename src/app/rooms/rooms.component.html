@@ -1,0 +1,26 @@
+<div class="container-fluid">
+  <div class="row m-2">
+    <div class="col-1"></div>
+    <div class="col-3">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Номер класса</th>
+            <th scope="col">Буква класса</th>
+            <th scope="col">Классный руководитель</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let room of rooms">
+            <th><a class="btn" [routerLink]="[room.classNumber + room.classLetter]">{{room.classNumber}}</a></th>
+            <td><a class="btn" [routerLink]="[room.classNumber + room.classLetter]">{{room.classLetter}}</a></td>
+            <td><a class="btn" [routerLink]="[room.classNumber + room.classLetter]">{{room.classroomTeacher.lastName}} {{room.classroomTeacher.firstName}}</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-8">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

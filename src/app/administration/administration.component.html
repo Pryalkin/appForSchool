@@ -1,0 +1,51 @@
+<div class="container-fluid">
+  <div class="row m-2">
+    <div class="col-1"></div>
+    <div class="col-10 border border-3 rounded">
+      <div class="row p-3">
+        <div class="col-12 d-flex justify-content-end">
+          <div class="btn-group pb-3" role="group" aria-label="Базовая группа переключателей радио">
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" (click)="actionsToNavigate(1)">
+            <label class="btn btn-outline-primary" for="btnradio1">Формы</label>
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" (click)="actionsToNavigate(2)">
+            <label class="btn btn-outline-primary" for="btnradio2">Действия</label>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="container-fluid" *ngIf="navigate == 1">
+            <ul class="nav nav-tabs d-flex justify-content-around">
+              <li class="nav-item">
+                <a class="nav-link fw-bold fst-italic" routerLinkActive="active" routerLink="itemForm">Добавить предмет</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link fw-bold fst-italic" routerLinkActive="active" routerLink="teacherForm">Добавить учителя</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link fw-bold fst-italic" routerLinkActive="active" routerLink="roomForm">Добавить класс</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link fw-bold fst-italic" routerLinkActive="active" routerLink="studentForm">Добавить ученика</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link fw-bold fst-italic" routerLinkActive="active" routerLink="timetableForm">Добавить расписание</a>
+              </li>
+            </ul>
+          </div>
+          <div class="container-fluid" *ngIf="navigate == 2">
+            <ul class="nav nav-tabs d-flex justify-content-around">
+              <li class="nav-item">
+                <a class="nav-link fw-bold fst-italic" routerLinkActive="active" routerLink="itemForm">Удалить предмет</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <div class="row p-2">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+    <div class="col-1"></div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="container-fluid">
+  <div class="row p-3 border border-3 rounded grad">
+    <h4 class="d-flex justify-content-around">Форма для добавления предмета</h4>
+    <div class="col-3"></div>
+    <div class="col-6">
+      <form id="item" class="p-4" #itemForm="ngForm" (ngSubmit)="onItem(itemForm.value)">
+         <span class="help-block" style="color: red;"
+               *ngIf="nameInput.invalid && nameInput.touched">Введите имя</span>
+        <div class="input-group mb-4 border border-2 rounded" style="background-color: darkgray">
+          <input type="text" class="form-control" name="name" placeholder="name"
+                 ngModel #nameInput="ngModel" required>
+        </div>
+        <div class="d-flex justify-content-center mt-3">
+          <button type="submit" name="button" [disabled]="itemForm.invalid || showLoading" class="btn btn-primary px-4">
+            <i *ngIf="showLoading" class="spinner-border"></i>&nbsp;&nbsp;
+            <span *ngIf="showLoading" class="sr-only">Loading...</span>
+            <span *ngIf="!showLoading">Добавить</span>
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="col-3"></div>
+  </div>
+</div>

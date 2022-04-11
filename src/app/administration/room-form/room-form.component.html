@@ -1,0 +1,36 @@
+<div class="container-fluid">
+  <div class="row p-3 border border-3 rounded grad">
+    <h4 class="d-flex justify-content-around">Форма для добавления класса</h4>
+    <div class="col-3"></div>
+    <div class="col-6">
+      <form id="room" class="p-4" #roomForm="ngForm" (ngSubmit)="onRoom(roomForm)">
+         <span class="help-block" style="color: red;"
+               *ngIf="classNumberInput.invalid && classNumberInput.touched">Введите номер класса</span>
+        <div class="input-group mb-4 border border-2 rounded">
+          <input type="text" class="form-control" name="classNumber" placeholder="class number"
+                 ngModel #classNumberInput="ngModel" required>
+        </div>
+        <span class="help-block" style="color: red;"
+              *ngIf="classLetterInput.invalid && classLetterInput.touched">Введите букву класса</span>
+        <div class="input-group mb-4 border border-2 rounded">
+          <input type="text" class="form-control" name="classLetter" placeholder="class letter"
+                 ngModel #classLetterInput="ngModel" required>
+        </div>
+        <div class="input-group mb-4 ">
+          <select id="classroomTeacher" class="form-select mb-4 border border-2 rounded" type="text" name="classroomTeacher" ngModel required>
+            <option  *ngFor="let teacher of teachers" value="{{teacher.id}}">{{teacher.firstName}} {{teacher.lastName}}</option>
+          </select>
+        </div>
+        <div class="d-flex justify-content-center mt-3">
+          <button type="submit" name="button" [disabled]="roomForm.invalid || showLoading" class="btn btn-primary px-4">
+            <i *ngIf="showLoading" class="spinner-border"></i>&nbsp;&nbsp;
+            <span *ngIf="showLoading" class="sr-only">Loading...</span>
+            <span *ngIf="!showLoading">Добавить</span>
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="col-3"></div>
+  </div>
+</div>
+

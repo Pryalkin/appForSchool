@@ -1,0 +1,91 @@
+<div class="container-fluid">
+  <div class="row p-3 border border-3 rounded grad">
+    <h4 class="d-flex justify-content-around">Форма для создания расписания на день</h4>
+    <div class="col-3"></div>
+    <div class="col-6">
+      <form id="timetable" class="p-4" #timetableForm="ngForm" (ngSubmit)="addTimetable(timetableForm)">
+        <span class="help-block" style="color: red;"
+              *ngIf="dateInput.invalid && dateInput.touched">Пожалуйста! </span>
+        <span>Введите дату и время.</span>
+        <div class="input-group mb-3 border border-2 rounded" style="background-color: darkgray">
+          <input type="datetime-local" class="form-control" name="date" placeholder="firstname"
+                 ngModel #dateInput="ngModel" required>
+        </div>
+        <span>Выберите класс.</span>
+        <div class="input-group mb-3">
+          <select id="room" class="form-select border border-2 rounded" type="text" name="room" ngModel required>
+            <option *ngFor="let room of rooms" value="{{room.id}} {{room.classNumber}}{{room.classLetter}}">{{room.classNumber}}{{room.classLetter}}</option>
+          </select>
+        </div>
+        <span>Выберите предмет.</span>
+        <div class="input-group mb-3">
+          <select id="item" class="form-select border border-2 rounded" type="text" name="item" ngModel required>
+            <option  *ngFor="let item of items" value="{{item.id}} {{item.name}}">{{item.name}}</option>
+          </select>
+        </div>
+        <span>Выберите преподователя.</span>
+        <div class="input-group mb-4 ">
+          <select id="classroomTeacher" class="form-select mb-4 border border-2 rounded" type="text" name="classroomTeacher" ngModel required>
+            <option  *ngFor="let teacher of teachers" value="{{teacher.id}} {{teacher.firstName}} {{teacher.lastName}}">{{teacher.firstName}} {{teacher.lastName}}</option>
+          </select>
+        </div>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-4 d-flex justify-content-end">
+              <button type="submit" name="button" [disabled]="timetableForm.invalid || showLoading" class="btn btn-primary">
+                <i *ngIf="showLoading" class="spinner-border"></i>&nbsp;&nbsp;
+                <span *ngIf="showLoading" class="sr-only">Loading...</span>
+                <span *ngIf="!showLoading">Добавить</span>
+              </button>
+            </div>
+            <div class="col-4">
+              <!-- Кнопка-триггер модального окна -->
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="check()">
+                Просмотреть
+              </button>
+
+              <!-- Модальное окно -->
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Расписания перед созданием</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                    </div>
+                    <div class="modal-body">
+
+                      <table class="table">
+                        <thead>
+                        <tr>
+                          <th scope="col">Дата</th>
+                          <th scope="col">Предмет</th>
+                          <th scope="col">Преподователь</th>
+                          <th scope="col">Класс</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let t of timetablesPreview">
+                          <th>{{t.date}}</th>
+                          <td>{{t.item.name}}</td>
+                          <td>{{t.teacher.lastName}} {{t.teacher.firstName}}</td>
+                          <td>{{t.room.classNumber}}{{t.room.classLetter}}</td>
+                        </tr>
+                        </tbody>
+                      </table>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-4">
+              <button type="button" *ngIf="i > 0" class="btn btn-primary" (click)="onTimetable()">Создать<span class="badge bg-secondary">{{i}}</span></button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-3"></div>
+  </div>
+</div>
