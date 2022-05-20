@@ -6,7 +6,7 @@ import com.test.Application.exception.entity.ItemExistException;
 import java.util.List;
 
 public interface ItemService {
-    Item addItem(Item item) throws ItemExistException;
+    Item addItem(Item item, Integer i) throws ItemExistException;
     List<Item> getAllItems();
     void deleteItem(Item item);
 }

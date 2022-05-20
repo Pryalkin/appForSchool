@@ -9,6 +9,7 @@ import com.test.Application.service.ItemService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 @Service
@@ -18,9 +19,19 @@ public class ItemServiceImpl implements ItemService {
     private final ItemRepository itemRepository;
 
     @Override
-    public Item addItem(Item item) throws ItemExistException {
-        validateFirstnameAndLastname(item);
-        return itemRepository.save(item);
+    public Item addItem(Item item, Integer i) throws ItemExistException {
+        if (i == 1){
+            validateFirstnameAndLastname(item);
+            return itemRepository.save(item);
+        }
+        if (i == 2){
+            if (itemRepository.findByName(item.getName()).isPresent()) {
+                Item deleteItem = itemRepository.findByName(item.getName()).get();
+                itemRepository.delete(deleteItem);
+                return new Item();
+            }
+        }
+        return null;
     }
 
     @Override
