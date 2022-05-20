@@ -1,0 +1,16 @@
+<div class="container-fluid">
+  <div class="row m-5">
+    <nav class="navbar navbar-dark grad border border-3 rounded-pill" style="background-color: red">
+      <div class="container-fluid d-flex justify-content-around">
+        <a class="navbar-brand fw-bold fst-italic" [routerLink]="['/']">Инфо</a>
+        <a class="navbar-brand fw-bold fst-italic" [routerLink]="['/rooms']">Классы</a>
+        <a class="navbar-brand fw-bold fst-italic" href="#">Расписание</a>
+        <a class="navbar-brand fw-bold fst-italic" [routerLink]="['/administration']">Администрирование</a>
+      </div>
+    </nav>
+  </div>
+  <div class="row">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+<notifier-container></notifier-container>
